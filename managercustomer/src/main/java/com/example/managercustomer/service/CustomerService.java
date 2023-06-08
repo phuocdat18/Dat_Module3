@@ -14,7 +14,6 @@ public interface CustomerService {
     default long getMaxCustomerId() {
         // Logic để lấy id lớn nhất từ cơ sở dữ liệu hoặc từ danh sách khách hàng
         long maxId = 0;
-
         // Code để lấy id lớn nhất, ví dụ:
         List<Customer> customers = findAll(); // Lấy danh sách khách hàng
         for (Customer customer : customers) {
@@ -23,7 +22,6 @@ public interface CustomerService {
                 maxId = customerId;
             }
         }
-
         return maxId;
     }
 }

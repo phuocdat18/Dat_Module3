@@ -2,7 +2,9 @@ package com.example.managercustomer;
 
 import com.example.managercustomer.model.Customer;
 import com.example.managercustomer.service.CustomerService;
+import com.example.managercustomer.service.CustomerService1;
 import com.example.managercustomer.service.CustomerServiceImpl;
+import com.example.managercustomer.DAO.CustomerDAO;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,10 +15,12 @@ import java.util.List;
 @WebServlet(name = "CustomerServlet", urlPatterns = "/")
 public class CustomerServlet extends HttpServlet {
     private CustomerService customerService;
+    private CustomerService1 service1;
 
     @Override
     public void init() throws ServletException {
         customerService = new CustomerServiceImpl();
+        service1 = new CustomerService1();
     }
 
     @Override
@@ -39,8 +43,8 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void showCustomers(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Customer> customers = customerService.findAll();
-
+//        List<Customer> customers = customerService.findAll();
+        List<Customer> customers = service1.findAll();
         req.setAttribute("customers", customers);
         req.getRequestDispatcher("list.jsp").forward(req, resp);
 
