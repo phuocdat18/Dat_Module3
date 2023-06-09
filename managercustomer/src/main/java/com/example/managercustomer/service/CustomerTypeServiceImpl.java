@@ -1,6 +1,5 @@
 package com.example.managercustomer.service;
 
-import com.example.managercustomer.DAO.CustomerDAO;
 import com.example.managercustomer.DAO.CustomerTypeDAO;
 import com.example.managercustomer.model.CustomerType;
 
@@ -24,16 +23,16 @@ public class CustomerTypeServiceImpl implements CustomerTypeService{
 
     @Override
     public void updateType(int id, CustomerType customerType) {
-
+        customerTypeDAO.updateType(id,customerType);
     }
 
     @Override
     public void removeType(int id) {
-
+        customerTypeDAO.removeType(id);
     }
 
     @Override
     public CustomerType findByIdType(int id) {
-        return null;
+        return customerTypeDAO.findByIdType(id);
     }
 }

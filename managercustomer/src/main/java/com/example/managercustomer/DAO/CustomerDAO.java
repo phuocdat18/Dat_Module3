@@ -49,6 +49,30 @@ public class CustomerDAO implements CustomerService {
         }
         return customers;
     }
+    public List<Customer> sortByNameASC(){
+        List<Customer> customers = new ArrayList<>();
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM SELECT * FROM customer.customer order by name ASC;");
+            System.out.println("Function findAll" + preparedStatement);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                String address = resultSet.getString("address");
+                Customer customer = new Customer(id, name, email, address);
+                customers.add(customer);
+            }
+        } catch (SQLException sqlException) {
+            printSQLException(sqlException);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return customers;
+    }
 
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
@@ -72,14 +96,14 @@ public class CustomerDAO implements CustomerService {
         try {
             Connection connection = getConnection();
 
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `customer` (`id`, `name`, `email`, `address`) VALUES (?, ?, ?, ?);");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO `customer` (`name`, `email`, `address`) VALUES (?, ?, ?);");
 
             preparedStatement.setString(1,customer.getName());
             preparedStatement.setString(2,customer.getEmail());
             preparedStatement.setString(3,customer.getAddress());
 
             System.out.println("Function save" + preparedStatement);
-            preparedStatement.executeQuery();
+            preparedStatement.executeUpdate();
 
             connection.close();
         } catch (SQLException sqlException) {
@@ -141,6 +165,7 @@ public class CustomerDAO implements CustomerService {
 
             preparedStatement.setInt(1,id);
             System.out.println("Function delete" + preparedStatement);
+            preparedStatement.executeUpdate();
             connection.close();
         } catch (SQLException sqlException) {
             printSQLException(sqlException);

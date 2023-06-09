@@ -9,6 +9,10 @@
 <form method="post" id="frmHiden" action="/customers?action=delete">
     <input type="hidden" id="txtIdEdit" name="idEdit"  />
 </form>
+<form action="/customers" method="get">
+    <input type="text" name="search" placeholder="Search ...">
+    <button type="submit">Submit</button>
+</form>
 <table border="1">
     <tr>
         <td>Id</td>
@@ -24,6 +28,7 @@
             <td>${c.getName()}</td>
             <td>${c.getEmail()}</td>
             <td>${c.getAddress()}</td>
+            <td>${}</td>
             <td>
                 <a href="/customers?action=edit&id=${c.getId()}"><i class="fa-solid fa-pen-to-square"></i></a>
                 <a onclick="handleDelete('${c.getId()}','${c.getName()}')"><i class="fa-solid fa-trash"></i></a>

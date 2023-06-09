@@ -1,5 +1,6 @@
 package com.example.managercustomer.service;
 
+import com.example.managercustomer.DAO.CustomerDAO;
 import com.example.managercustomer.model.Customer;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.Map;
 
 public class CustomerServiceImpl implements CustomerService{
     private static Map<Integer, Customer> customers;
+    CustomerDAO customerDAO = new CustomerDAO();
     static {
         customers = new HashMap<>();
         customers.put(1, new Customer(1, "John", "john@codegym.vn", "Hanoi"));

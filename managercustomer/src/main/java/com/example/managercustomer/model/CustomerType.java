@@ -31,6 +31,11 @@ public class CustomerType {
         return type;
     }
 
+    public CustomerType(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public void setType(String type) {
         this.type = type;
     }

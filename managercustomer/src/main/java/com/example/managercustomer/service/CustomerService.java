@@ -2,6 +2,7 @@ package com.example.managercustomer.service;
 
 import com.example.managercustomer.model.Customer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface CustomerService {
@@ -23,5 +24,16 @@ public interface CustomerService {
             }
         }
         return maxId;
+    }
+
+    default List<Customer> searchCustomer(String name){
+        List<Customer> result = new ArrayList<>();
+        List<Customer> students = findAll();
+        for (Student student: students){
+            if(student.getName().toUpperCase().contains(name.toUpperCase())){
+                result.add(student);
+            }
+        }
+        return result;
     }
 }

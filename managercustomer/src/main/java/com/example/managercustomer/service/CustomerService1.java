@@ -34,4 +34,7 @@ public class CustomerService1 implements CustomerService{
     public void remove(int id) {
         customerDAO.remove(id);
     }
+    public List<Customer> sortByNameASC(){
+        return customerDAO.sortByNameASC();
+    }
 }

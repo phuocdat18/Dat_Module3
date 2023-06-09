@@ -92,6 +92,7 @@ public class CustomerTypeDAO implements CustomerTypeService {
         try {
             Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM customertype where id = ?;");
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 int idCustomerType = resultSet.getInt("id");
